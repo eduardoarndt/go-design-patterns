@@ -16,20 +16,9 @@ Each pattern represents a best practice that developers can adapt to their speci
 
 1. **Creational Patterns**: Focus on object creation.
 
-   - **Factory Method**: Creates objects without specifying the exact class.
-   - **Singleton**: Ensures a class has only one instance.
-   - **Builder**: Constructs complex objects step by step.
-
 2. **Structural Patterns**: Focus on object composition.
 
-   - **Adapter**: Makes incompatible interfaces work together.
-   - **Decorator**: Adds behavior to objects dynamically.
-   - **Facade**: Simplifies complex interfaces.
-
 3. **Behavioral Patterns**: Focus on communication between objects.
-   - **Observer**: Notifies multiple objects of state changes.
-   - **Strategy**: Encapsulates interchangeable behaviors.
-   - **Command**: Encapsulates requests as objects.
 
 ### Why Use Design Patterns?
 
