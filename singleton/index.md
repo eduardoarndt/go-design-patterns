@@ -72,8 +72,8 @@ func main() {
 
 The function `NewSingletonInstance` ensures that only one instance of singleton is created, even when called multiple times.
 
-- First, it checks if instance is nil (i.e., no instance has been created yet).
-- If instance is nil, it locks the section of code using lock.Lock() to prevent multiple Goroutines from entering this section simultaneously.
-- After locking, a second check (if instance == nil) is performed to ensure that no other Goroutine created the instance between the first check and the time the lock was acquired.
-- If the instance is still nil, a new singleton instance is created and assigned to the global instance variable.
-- The sync.Mutex and double-checked locking ensure that the creation of the singleton instance is thread-safe, preventing multiple Goroutines from creating separate instances.
+- First, it checks if `instance` is nil (i.e., no instance has been created yet).
+- If `instance` is nil, it locks the section of code using `lock.Lock()` to prevent multiple goroutines from entering this section simultaneously.
+- After locking, a second check is performed to ensure that no other goroutine created the instance between the first check and the time the lock was acquired.
+- If `instance` is still nil, a new singleton instance is created and assigned to the global variable.
+- The `sync.Mutex` and double-checked locking ensure that the creation of the singleton instance is thread-safe, preventing multiple goroutines from creating separate instances.
