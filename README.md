@@ -34,9 +34,9 @@ Each pattern represents a best practice that developers can adapt to their speci
 
 ### Design Patterns
 
-1. [Singleton](singleton/index.md)
-1. [Factory](factory/index.md)
-1. [Builder](builder/index.md)
+1. [Singleton](singleton/README.md)
+1. [Factory Method](factory/README.md)
+1. [Builder](builder/README.md)
 
 ### Resources
 
