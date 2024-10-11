@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Step 1: Define the Product Interface
 type Car interface {
@@ -35,8 +38,10 @@ type CarFactory interface {
 
 type carFactory struct{}
 
-func (carFactory *carFactory) CreateCar(brand string) Car {
-	if brand == "tesla" {
+func (carFactory *carFactory) CreateCar() Car {
+	carPreference := os.Getenv("CAR_PREFERENCE")
+
+	if carPreference == "electric" {
 		return &ElectricCar{}
 	}
 
@@ -48,13 +53,14 @@ func main() {
 	// Client uses the factory to create objects
 	carFactory := carFactory{}
 
-	// Creating an Electric Car
-	electricCar := carFactory.CreateCar("tesla")
-	fmt.Println(electricCar.Drive())    // Output: Driving an electric car
-	fmt.Println(electricCar.FuelType()) // Output: Powered by electricity
-
 	// Creating a Gas Car
-	gasCar := carFactory.CreateCar("ferrari")
+	gasCar := carFactory.CreateCar()
 	fmt.Println(gasCar.Drive())    // Output: Driving a gas-powered car
 	fmt.Println(gasCar.FuelType()) // Output: Powered by gasoline
+
+	// Creating an Electric Car
+	os.Setenv("CAR_PREFERENCE", "electric")
+	electricCar := carFactory.CreateCar()
+	fmt.Println(electricCar.Drive())    // Output: Driving an electric car
+	fmt.Println(electricCar.FuelType()) // Output: Powered by electricity
 }

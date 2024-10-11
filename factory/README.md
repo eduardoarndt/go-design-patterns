@@ -1,4 +1,4 @@
-# Factory Method
+## Factory Method
 
 The Factory Method is a creational design pattern that provides an interface for creating objects but allows subclasses to alter the type of objects that will be created. Instead of directly instantiating objects using new, the Factory Method delegates the responsibility of object creation to subclasses or methods, promoting flexibility and scalability.
 
@@ -25,7 +25,10 @@ Imagine a car factory where you place an order for a car, but depending on your 
 ```go
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Step 1: Define the Product Interface
 type Car interface {
@@ -60,8 +63,10 @@ type CarFactory interface {
 
 type carFactory struct{}
 
-func (carFactory *carFactory) CreateCar(brand string) Car {
-	if brand == "tesla" {
+func (carFactory *carFactory) CreateCar() Car {
+	carPreference := os.Getenv("CAR_PREFERENCE")
+
+	if carPreference == "electric" {
 		return &ElectricCar{}
 	}
 
@@ -73,15 +78,16 @@ func main() {
 	// Client uses the factory to create objects
 	carFactory := carFactory{}
 
-	// Creating an Electric Car
-	electricCar := carFactory.CreateCar("tesla")
-	fmt.Println(electricCar.Drive())    // Output: Driving an electric car
-	fmt.Println(electricCar.FuelType()) // Output: Powered by electricity
-
 	// Creating a Gas Car
-	gasCar := carFactory.CreateCar("ferrari")
+	gasCar := carFactory.CreateCar()
 	fmt.Println(gasCar.Drive())    // Output: Driving a gas-powered car
 	fmt.Println(gasCar.FuelType()) // Output: Powered by gasoline
+
+	// Creating an Electric Car
+	os.Setenv("CAR_PREFERENCE", "electric")
+	electricCar := carFactory.CreateCar()
+	fmt.Println(electricCar.Drive())    // Output: Driving an electric car
+	fmt.Println(electricCar.FuelType()) // Output: Powered by electricity
 }
 ```
 
@@ -91,6 +97,6 @@ Concrete Products: Implements the interface with specific classes (ElectricCar, 
 
 Factory Interface: Specifies a method (CreateCar()) for creating Car objects.
 
-Factory Logic: The factory decides which type of car to create based on input (e.g., returns ElectricCar for "tesla", GasCar otherwise).
+Factory Logic: The factory decides which type of car to create based on the client's preferences. This is exampled here by using environment variables, but it could be based on any logic.
 
 Client Code: Requests cars from the factory without knowing the creation details, using the returned objects through the common interface.
