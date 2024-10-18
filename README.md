@@ -35,9 +35,23 @@ Each pattern represents a best practice that developers can adapt to their speci
 ### Design Patterns
 
 1. [Singleton](singleton/README.md)
-1. [Factory Method](factory/README.md)
+1. [Factory Method](factory-method/README.md)
+1. [Abstract Factory](abstract-factory/README.md)
 1. [Builder](builder/README.md)
+1. [Prototype](prototype/README.md)
+1. [Adapter](adapter/README.md)
+1. [Decorator](decorator/README.md)
+1. [Strategy](strategy/README.md)
+1. [Observer](observer/README.md)
+1. [Command](command/README.md)
+
+These are the design patterns that are implemented in this repository. Each pattern is explained in detail with examples.
+
+There are many other design patterns that can be used in different scenarios. Check out the resources section for more information!
 
 ### Resources
 
+1. [Programming Principles](https://github.com/webpro/programming-principles)
 1. [Refactoring Guru](https://refactoring.guru/)
+1. [Design Patterns Implemented in Java](https://github.com/iluwatar/java-design-patterns)
+1. [OODesign](https://www.oodesign.com/)
